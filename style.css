@@ -1,4 +1,53 @@
-#pokedex {
+#pokedex-card {
     min-height: 50vh;
-    background-color:  rgba(219, 33, 33);
+    background-color:  #FB6C6C;
+    color: white;
+    padding: 24px;
+}
+
+body {
+    margin: 0;
+}
+
+.info-container {
+    background-color: white;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    min-height: 100px;
+    margin-top: -40px;
+    background-color: gray;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 100px;
+    background-color: #ffcc00c0;
+    width: 100vw;
+}
+
+/* @keyframes rotateLogo {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .logo-rotate {
+    animation: rotateLogo 10s linear infinite;
+  } */
+
+
+header img {
+    height: 80px;
+}
+
+input {
+    height: 50px;
+    background-color: #ffcc00c0;
+
 }
