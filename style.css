@@ -1,14 +1,19 @@
 .pokedex-container {
-    height: 400px;
+    height: 250px;
     background-color:  #FB6C6C;
     color: white;
     padding: 24px;
-    width: 300px;
+    width: 250px;
     margin: 30px;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius: 20px;
+    box-shadow: 2px 3px 3px 2px rgba(0, 0, 0, 0.1);
+    background-image: url(img/card-bgr.png);
+    background-repeat: no-repeat;
+    background-position: bottom 5px right 10px;
+    background-size: 150px;
 }
 
 .pokedex-container img {
@@ -54,10 +59,12 @@ input {
     width: 250px;
     padding: 30px;
     outline: none;
+    color: #356ABC;
+    font-size: 24px;
 }
 
 input::placeholder {
-    color:white;
+    color: #356ABC;
     font-size: 24px;
     text-align: center;
 }
@@ -68,5 +75,8 @@ input::placeholder {
     flex-wrap: wrap;
 }
 
+.info-container-small-card {
+
+}
 
 
