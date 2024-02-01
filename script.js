@@ -13,4 +13,5 @@ function renderPokemonInfo() {
    let name = document.getElementById('pokemonName');
    name.innerHTML = currentPokemon['name'];
    document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+   document.getElementById('type').innerHTML += currentPokemon['types']['0']['type']['name'];
 }
