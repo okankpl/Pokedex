@@ -15,6 +15,11 @@
   background-size: 150px;
 }
 
+.pokedex-container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .pokedex-container img {
   height: 150px;
 }
@@ -76,6 +81,10 @@ input::placeholder {
   justify-content: center;
 }
 
+h6 {
+  text-align: center;
+}
+
 .bgr-color-red {
   background-color: #fb6c6c;
 }
@@ -99,6 +108,14 @@ input::placeholder {
   background-color: #6d4b97;
 }
 
-h6 {
-  text-align: center;
+.bgr-color-electric {
+  background-color: #f2c341;
+}
+
+.bgr-color-ground {
+    background-color: #895229;
+}
+
+.bgr-color-fairy {
+    background-color: #BA7FB5;
 }
