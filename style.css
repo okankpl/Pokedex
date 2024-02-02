@@ -1,6 +1,6 @@
 .pokedex-container {
     height: 250px;
-    background-color:  #FB6C6C;
+    
     color: white;
     padding: 24px;
     width: 250px;
@@ -23,6 +23,10 @@
 body {
     margin: 0;
     background-color: #F6F8FC !important;
+    background-image: url(img/card-bgr.png);
+   
+    background-size: 600px;
+    
 }
 
 .info-container {
@@ -79,4 +83,18 @@ input::placeholder {
 
 }
 
+.bgr-color-red {
+    background-color: #FB6C6C;
+}
 
+.bgr-color-green {
+    background-color: #48D0B0;
+}
+
+.bgr-color-blue {
+    background-color: #76BDFE;
+}
+
+h6 {
+    text-align: center;
+}
