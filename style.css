@@ -1,99 +1,104 @@
 .pokedex-container {
-    height: 250px;
-    color: white;
-    padding: 24px;
-    width: 250px;
-    margin: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 20px;
-    box-shadow: 2px 3px 3px 2px rgba(0, 0, 0, 0.1);
-    background-image: url(img/card-bgr.png);
-    background-repeat: no-repeat;
-    background-position: bottom 5px right 10px;
-    background-size: 150px;
+  height: 250px;
+  color: white;
+  padding: 24px;
+  width: 250px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: 2px 3px 3px 2px rgba(0, 0, 0, 0.1);
+  background-image: url(img/card-bgr.png);
+  background-repeat: no-repeat;
+  background-position: bottom 5px right 10px;
+  background-size: 150px;
 }
 
 .pokedex-container img {
-    height: 150px
+  height: 150px;
 }
 
 body {
-    margin: 0;
-    background-color: #F6F8FC !important;
-    background-image: url(img/card-bgr.png);
-    background-size: 600px;
-    
+  margin: 0;
+  background-color: #f6f8fc !important;
+  background-image: url(img/card-bgr.png);
+  background-size: 600px;
 }
 
 .info-container {
-    background-color: white;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    min-height: 100px;
-    margin-top: -40px;
-    background-color: gray;
+  background-color: white;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  min-height: 100px;
+  margin-top: -40px;
+  background-color: gray;
 }
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    background-color: #ffcc00c0;
-    width: 100vw;
-    flex-direction: column;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1); /* Horizontaler Versatz, vertikaler Versatz, Unschärferadius, Ausbreitungsradius, Farbe */
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background-color: #ffcc00c0;
+  width: 100vw;
+  flex-direction: column;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1); /* Horizontaler Versatz, vertikaler Versatz, Unschärferadius, Ausbreitungsradius, Farbe */
 }
 
 header img {
-    height: 60px;
+  height: 60px;
 }
 
 input {
-    height: 30px;
-    background-color: transparent;
-    border-style: none;
-    width: 250px;
-    padding: 30px;
-    outline: none;
-    color: #356ABC;
-    font-size: 24px;
+  height: 30px;
+  background-color: transparent;
+  border-style: none;
+  width: 250px;
+  padding: 30px;
+  outline: none;
+  color: #356abc;
+  font-size: 24px;
 }
 
 input::placeholder {
-    color: #356ABC;
-    font-size: 24px;
-    text-align: center;
+  color: #356abc;
+  font-size: 24px;
+  text-align: center;
 }
 
 #pokedex {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .bgr-color-red {
-    background-color: #FB6C6C;
+  background-color: #fb6c6c;
 }
 
 .bgr-color-green {
-    background-color: #48D0B0;
+  background-color: #48d0b0;
 }
 
 .bgr-color-blue {
-    background-color: #76BDFE;
+  background-color: #76bdfe;
 }
 
 .bgr-color-bug {
-    background-color: #92BF2C;
+  background-color: #92bf2c;
+}
+.bgr-color-normal {
+  background-color: #a1a1a1;
+}
+
+.bgr-color-poison {
+  background-color: #6d4b97;
 }
 
 h6 {
-    text-align: center;
+  text-align: center;
 }

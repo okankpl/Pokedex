@@ -1,6 +1,6 @@
 
 let currentPokemon;
-let maxPokedex = 13;
+let maxPokedex = 30;
 let pokemonArray;
 
 async function renderSmallCard() {
@@ -17,39 +17,57 @@ async function renderSmallCard() {
             let pokemonType = currentPokemon['types'][0]['type']['name'];
             let name = currentPokemon['name'];
 
-            // Create a new container for each Pokemon and add a class based on pokemonType
             let pokemonContainer = document.createElement('div');
             pokemonContainer.classList.add('pokedex-container');
+            addBgrColor(pokemonContainer , pokemonType);
+           
 
-            // Add a specific class based on pokemonType (for example, 'bgr-color-green' for 'grass' type)
-            if (pokemonType === 'grass') {
-                pokemonContainer.classList.add('bgr-color-green');
-            }
-            else if(pokemonType=== 'fire')
-            {
-                pokemonContainer.classList.add('bgr-color-red');
-            }
-            else if(pokemonType=== 'water')
-            {
-                pokemonContainer.classList.add('bgr-color-blue');
-            }
-            else if(pokemonType==='bug') {
-                pokemonContainer.classList.add('bgr-color-bug');
-            }
-
-            pokemonContainer.innerHTML = `
-                <div>
-                    <img id="pokemonImage" src="${pokemonImage}" alt="">
-                </div>
-                <div class="info-container-small-card">
-                    <h2 id="pokemonName">${name}</h2>
-                    <h6 id="type">Type: ${pokemonType}</h6>
-                </div>
-            `;
-
+            pokemonContainer.innerHTML = smallCardTemplate(name,pokemonImage,pokemonType);
+            
             content.appendChild(pokemonContainer);
         } else {
             console.error(`Failed to fetch data for Pokemon ${i}: ${response.statusText}`);
         }
+    }
+}
+
+function smallCardTemplate(name, pokemonImage, pokemonType) {
+    return /*HTML*/ `<div>
+    <img id="pokemonImage" src="${pokemonImage}" alt="">
+</div>
+<div class="info-container-small-card">
+    <h2 id="pokemonName">${name}</h2>
+    <h6 id="type">Type: ${pokemonType}</h6>
+</div>
+`;
+}
+
+function addBgrColor(pokemonContainer, pokemonType) {
+
+    if (pokemonType === 'grass') {
+        pokemonContainer.classList.add('bgr-color-green');
+    }
+    else if(pokemonType=== 'fire')
+    {
+        pokemonContainer.classList.add('bgr-color-red');
+    }
+    else if(pokemonType=== 'water')
+    {
+        pokemonContainer.classList.add('bgr-color-blue');
+    }
+    else if(pokemonType==='bug') {
+        pokemonContainer.classList.add('bgr-color-bug');
+    }
+    else if(pokemonType==='normal') {
+        pokemonContainer.classList.add('bgr-color-normal');
+    }
+    else if(pokemonType==='poison') {
+        pokemonContainer.classList.add('bgr-color-poison');
+    }
+    else if(pokemonType==='electric') {
+        pokemonContainer.classList.add('bgr-color-electric');
+    }
+    else if(pokemonType === 'ground') {
+        pokemonContainer.classList.add('bgr-color-ground');
     }
 }
