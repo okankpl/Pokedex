@@ -134,3 +134,27 @@ h6 {
     margin-bottom: 30px;
     margin-top: 16px;
 }
+
+#pokedexBigCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+#bigCardImage {
+    height: 250px;
+}
+
+.bigCard {
+    background-color: #fb6c6c;
+    border-top-right-radius: 15px;
+    border-top-left-radius:15px;
+    color: white;
+    
+}
+#chart {
+    
+    height: 150px;
+}

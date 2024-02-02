@@ -1,7 +1,8 @@
 let currentPokemon;
 let maxPokedex = 23;
 let pokemonArray;
-
+let pokemonStats = [];
+let stats = ['hp','attack', 'defense', 'sp-attack','sp-defense', 'speed'];
 async function renderSmallCard() {
   content = document.getElementById("pokedex");
   content.innerHTML = "";
@@ -11,13 +12,19 @@ async function renderSmallCard() {
     let response = await fetch(url);
     if (response.ok) {
       currentPokemon = await response.json();
-      let pokemonImage =currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+      let pokemonImage =
+        currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
       let pokemonType = currentPokemon["types"][0]["type"]["name"];
       let name = currentPokemon["name"];
       let pokemonContainer = document.createElement("div");
-      pokemonContainer.classList.add("pokedex-container");
       addBgrColor(pokemonContainer, pokemonType);
-      pokemonContainer.innerHTML = smallCardTemplate(name,pokemonImage,pokemonType,i);
+      pokemonContainer.classList.add("pokedex-container");
+      pokemonContainer.innerHTML = smallCardTemplate(
+        name,
+        pokemonImage,
+        pokemonType,
+        i
+      );
       content.appendChild(pokemonContainer);
       pokemonContainer.id = i;
     } else {
@@ -30,13 +37,16 @@ async function renderSmallCard() {
 
 function smallCardTemplate(name, pokemonImage, pokemonType, i) {
   return /*HTML*/ `
-<div>
+  <div onclick="openBigCard${i}()">
+    <div>
     <img id="pokemonImage" src="${pokemonImage}" alt="">
 </div>
 <div class="info-container-small-card">
     <h2 id="pokemonName">#${i} ${name}</h2>
     <h6 id="type">Type: ${pokemonType}</h6>
-</div> 
+</div>
+ </div>
+
 `;
 }
 
@@ -62,7 +72,56 @@ function addBgrColor(pokemonContainer, pokemonType) {
   }
 }
 function loadMore() {
-    maxPokedex =39;
-    renderSmallCard();
-    document.getElementById('loadBtn').classList.add('d-none');
+  maxPokedex = 39;
+  renderSmallCard();
+  document.getElementById("loadBtn").classList.add("d-none");
+}
+
+function openBigCard(i) {
+
+}
+
+async function renderBigCard() {
+    let url = "https://pokeapi.co/api/v2/pokemon/charmeleon";
+    let response = await fetch(url);
+    currentPokemon = await response.json();
+    let pokemonImage =
+        currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+      let pokemonType = currentPokemon["types"][0]["type"]["name"];
+      let name = currentPokemon["name"];
+      let pokemonContainer = document.createElement("div");
+      document.getElementById('bigCardImage').src = pokemonImage;
+
+for (let j = 0; j < 5; j++) {
+    
+    let actualstat = currentPokemon['stats'][j]['base_stat'];
+    pokemonStats.push(actualstat);
+}
+      
+
+
+    console.log(currentPokemon);
+
+
+      const chart = document.getElementById('chart');
+      new Chart(chart, {
+        type: 'bar',
+        data: {
+          labels: stats,
+          datasets: [{
+            label: '',
+            data: pokemonStats,
+            borderWidth: 1
+          }]
+        },
+        options: {indexAxis: 'y',
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+
 }
