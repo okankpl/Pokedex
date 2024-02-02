@@ -1,6 +1,5 @@
 .pokedex-container {
     height: 250px;
-    
     color: white;
     padding: 24px;
     width: 250px;
@@ -24,7 +23,6 @@ body {
     margin: 0;
     background-color: #F6F8FC !important;
     background-image: url(img/card-bgr.png);
-   
     background-size: 600px;
     
 }
@@ -73,14 +71,11 @@ input::placeholder {
     text-align: center;
 }
 
-.pokedex {
+#pokedex {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.info-container-small-card {
-
+    justify-content: center;
 }
 
 .bgr-color-red {
@@ -93,6 +88,10 @@ input::placeholder {
 
 .bgr-color-blue {
     background-color: #76BDFE;
+}
+
+.bgr-color-bug {
+    background-color: #92BF2C;
 }
 
 h6 {
