@@ -92,7 +92,7 @@ async function renderBigCard() {
       let pokemonContainer = document.createElement("div");
       document.getElementById('bigCardImage').src = pokemonImage;
 
-for (let j = 0; j < 5; j++) {
+for (let j = 0; j < 6; j++) {
     
     let actualstat = currentPokemon['stats'][j]['base_stat'];
     pokemonStats.push(actualstat);
@@ -114,7 +114,9 @@ for (let j = 0; j < 5; j++) {
             borderWidth: 1
           }]
         },
-        options: {indexAxis: 'y',
+        options: {responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
           scales: {
             y: {
               beginAtZero: true

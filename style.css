@@ -144,7 +144,8 @@ h6 {
 }
 
 #bigCardImage {
-    height: 250px;
+    height: 200px;
+    margin-bottom: 20px;
 }
 
 .bigCard {
@@ -152,9 +153,23 @@ h6 {
     border-top-right-radius: 15px;
     border-top-left-radius:15px;
     color: white;
+    width: 300px;
     
+}
+
+.bigCard h2 {
+    margin-top: 15px;
 }
 #chart {
     
-    height: 150px;
+    height: 200px;
+}
+
+#pokemonStats {
+     
+        width: 300px; /* Breite des Diagramms */
+        height: 300px; /* Höhe des Diagramms */
+        background-color: white;
+        border-radius: 20px;
+        margin-top: -20px;
 }
