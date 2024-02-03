@@ -143,8 +143,10 @@ h6 {
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  height: 650px;
+  height: 620px;
   width: 400px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
 
 #bigCardImage {
@@ -153,7 +155,7 @@ h6 {
 }
 
 .bigCard {
-  background-color: #fb6c6c;
+  
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   color: white;
@@ -163,6 +165,7 @@ h6 {
   background-repeat: no-repeat;
   background-position: bottom -30px right -30px;
   background-size: 250px;
+ 
 }
 
 .bigCard h2 {
@@ -175,4 +178,14 @@ h6 {
   background-color: white;
   border-radius: 20px;
   margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
+
+#pokemonStats h4 {
+    margin-top: 20px;
+}
+

@@ -16,27 +16,27 @@
     <script src="script.js"></script>
     <title>Pokedex</title>
   </head>
-  <body onload="renderSmallCard(), renderBigCard()">
+  <body onload="renderSmallCard()">
     <header>
       <img src="img/pokedexLogo.png" alt="" />
       <input type="text" id="searchPokemon" placeholder="Search Pokemon..." />
     </header>
-    <div id="pokedex" class="d-none"></div>
+    <div id="pokedex" class=""></div>
     <div class="load-btn" id="loadBtn">
       <button class="btn btn-primary" onclick="loadMore()">Load More</button>
     </div>
     <div id="pokedexBigCard">
-      <div class="bigCard">
+      <div class="bigCard" id="bigCard">
         <div>
-          <h2>Charmeleon</h2>
-          <h5>Fire</h5>
+          <h2 id="pokemonNameBigCard"></h2>
+          <h5 id="pokemonTypeBigCard"></h5>
         </div>
         <div>
           <img id="bigCardImage" alt="" />
         </div>
       </div>
       <div id="pokemonStats">
-        <h4>Pokemon Stats</h4>
+        <h4>Base Stats</h4>
         <canvas id="chart"></canvas>
       </div>
     </div>
