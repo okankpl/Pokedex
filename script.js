@@ -2,7 +2,7 @@ let currentPokemon;
 let maxPokedex = 23;
 let pokemonArray;
 let pokemonStats = [];
-let stats = ['hp','attack', 'defense', 'sp-attack','sp-defense', 'speed'];
+let stats = ["hp", "attack", "defense", "sp-attack", "sp-defense", "speed"];
 async function renderSmallCard() {
   content = document.getElementById("pokedex");
   content.innerHTML = "";
@@ -77,63 +77,72 @@ function loadMore() {
   document.getElementById("loadBtn").classList.add("d-none");
 }
 
-function openBigCard(i) {
-
-}
+function openBigCard(i) {}
 
 async function renderBigCard() {
-    let url = "https://pokeapi.co/api/v2/pokemon/charmeleon";
-    let response = await fetch(url);
-    currentPokemon = await response.json();
-    let pokemonImage =
-        currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
-      let pokemonType = currentPokemon["types"][0]["type"]["name"];
-      let name = currentPokemon["name"];
-      let pokemonContainer = document.createElement("div");
-      document.getElementById('bigCardImage').src = pokemonImage;
-
-for (let j = 0; j < 6; j++) {
-    
-    let actualstat = currentPokemon['stats'][j]['base_stat'];
-    pokemonStats.push(actualstat);
+  let url = "https://pokeapi.co/api/v2/pokemon/charmeleon";
+  let response = await fetch(url);
+  currentPokemon = await response.json();
+  let pokemonImage =
+    currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
+  let pokemonType = currentPokemon["types"][0]["type"]["name"];
+  let name = currentPokemon["name"];
+  let pokemonContainer = document.createElement("div");
+  document.getElementById("bigCardImage").src = pokemonImage;
+  console.log(currentPokemon);
+  renderChart();
 }
-      
 
+function renderChart() {
+  for (let j = 0; j < 6; j++) {
+    let actualstat = currentPokemon["stats"][j]["base_stat"];
+    pokemonStats.push(actualstat);
+  }
 
-    console.log(currentPokemon);
-
-
-      const chart = document.getElementById('chart');
-      new Chart(chart, {
-        type: 'bar',
-        data: {
-          labels: stats,
-          datasets: [{
-            label: 'Base Stats',
-            data: pokemonStats,
-            borderWidth: 1,
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'],
-                categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
-                barPercentage: 1
-            }]
+  const chart = document.getElementById("chart");
+  Chart.defaults.font.weight = "bold";
+  new Chart(chart, {
+    type: "bar",
+    data: {
+      labels: stats,
+      datasets: [
+        {
+          label: "",
+          data: pokemonStats,
+          borderWidth: 1,
+          backgroundColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
+          barPercentage: 1,
         },
-        options: {responsive: true,
-            maintainAspectRatio: false,
-           
-            indexAxis: 'y',
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      indexAxis: "y",
+      plugins: {
+        legend: {
+          display: false, // Versteckt die Legende vollständig
+        },
+        title: {
+          display: false, // Versteckt den Titel, falls einer vorhanden ist
         }
-      });
-
-
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+        x: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 }
