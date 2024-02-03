@@ -15,8 +15,19 @@ const colorClasses = [
   "bgr-color-ground",
   "bgr-color-fairy",
 ];
+
+let barColors = [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+];
+
 let bigCardStatus = false;
 let myChart = null;
+let currentIndex = 0;
 
 async function renderSmallCard() {
   content = document.getElementById("pokedex");
@@ -68,6 +79,7 @@ function openBigCard(i, event) {
   document.getElementById("pokemonTypeBigCard").innerHTML = `Type: ${pokemonType}`;
   renderChart(i);
   bigCardStatus = true;
+  currentIndex = i;
 }
 
 document.addEventListener("click", function (event) {
@@ -86,6 +98,24 @@ document.getElementById("pokedexBigCard").addEventListener
 ("click", function (event) {
     event.stopPropagation();
   });
+
+  function nextCard(){
+    currentIndex++;
+    if (currentIndex >= pokemonBigCard.length) {
+        currentIndex = 0; // Zurück zum Anfang des Arrays
+    }
+    openBigCard(currentIndex); 
+  }
+
+  function prevCard() {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = pokemonBigCard.length - 1; // Zum letzten Pokémon gehen
+    }
+    openBigCard(currentIndex);
+  }
+
+
 
 function renderChart(i) {
   pokemonStats = [];
@@ -109,14 +139,7 @@ function renderChart(i) {
           label: "",
           data: pokemonStats,
           borderWidth: 1,
-          backgroundColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
+          backgroundColor: barColors,
           categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
           barPercentage: 1,
         },

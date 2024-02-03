@@ -213,3 +213,20 @@ h2 {
     display: none;
     z-index: 999; /* Stellen Sie sicher, dass dieser Wert niedriger ist als der Ihrer pokedexBigCard */
   }
+
+  .nav {
+    display: flex;
+    gap: 80px;
+    margin-top: 20px;
+    align-items: center;
+
+  }
+
+  .nav img {
+    height: 40px;
+  }
+
+  .nav img:hover {
+    cursor:pointer;
+    transform: scale(1.10);
+  }
