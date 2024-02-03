@@ -49,6 +49,7 @@ async function renderSmallCard() {
       pokemonContainer.innerHTML = smallCardTemplate(name,pokemonImage,pokemonType,i);
       content.appendChild(pokemonContainer);
       pokemonContainer.id = i;
+      
     } else {
       console.error(
         `Failed to fetch data for Pokemon ${i}: ${response.statusText}`
@@ -65,6 +66,7 @@ function loadMore() {
 }
 
 function openBigCard(i, event) {
+    currentIndex = i;
   if (event) event.stopPropagation();
   document.getElementById("overlay").style.display = "block";
   i--;
@@ -79,7 +81,6 @@ function openBigCard(i, event) {
   document.getElementById("pokemonTypeBigCard").innerHTML = `Type: ${pokemonType}`;
   renderChart(i);
   bigCardStatus = true;
-  currentIndex = i;
 }
 
 document.addEventListener("click", function (event) {
@@ -99,22 +100,43 @@ document.getElementById("pokedexBigCard").addEventListener
     event.stopPropagation();
   });
 
-  function nextCard(){
+  function nextCard() {
     currentIndex++;
-    if (currentIndex >= pokemonBigCard.length) {
-        currentIndex = 0; // Zurück zum Anfang des Arrays
-    }
-    openBigCard(currentIndex); 
-  }
-
-  function prevCard() {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = pokemonBigCard.length - 1; // Zum letzten Pokémon gehen
+    if (currentIndex >= pokemonBigCard.length + 1) {
+        currentIndex = 1;
     }
     openBigCard(currentIndex);
-  }
+}
 
+function prevCard() {
+    currentIndex --;
+    if (currentIndex <= 0) {
+        currentIndex = pokemonBigCard.length - 1;
+    }
+    openBigCard(currentIndex);
+}
+
+document.getElementById('searchPokemon').addEventListener('input', function (e) {
+    const searchText = e.target.value.toLowerCase();
+    const filteredPokemons = pokemonBigCard.filter(function (pokemon) {
+      return pokemon.name.toLowerCase().includes(searchText);
+    });
+    // Angenommen, Sie haben eine Funktion, die ähnlich wie `renderSmallCard` funktioniert, aber ein Array von Pokémon akzeptiert
+    renderFilteredPokemons(filteredPokemons);
+  });
+
+  function renderFilteredPokemons(filteredPokemons) {
+    let content = document.getElementById("pokedex");
+    content.innerHTML = ""; // Löscht den bestehenden Inhalt zu Beginn
+  
+    filteredPokemons.forEach((pokemon, index) => {
+      let pokemonContainer = document.createElement("div");
+      addBgrColor(pokemonContainer, pokemon.types[0].type.name);
+      pokemonContainer.classList.add("pokedex-container");
+      pokemonContainer.innerHTML = smallCardTemplate(pokemon.name, pokemon.sprites.other["official-artwork"].front_default, pokemon.types[0].type.name, index + 1); // Index + 1, wenn Ihre ID bei 1 beginnt
+      content.appendChild(pokemonContainer);
+    });
+  }
 
 
 function renderChart(i) {
