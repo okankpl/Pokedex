@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <script src="
-        https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
-    </script>
+        https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
@@ -13,32 +12,34 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="script.js"></script>
+
     <title>Pokedex</title>
   </head>
   <body onload="renderSmallCard()">
-    <header>
-      <img src="img/pokedexLogo.png" alt="" />
-      <input type="text" id="searchPokemon" placeholder="Search Pokemon..." />
-    </header>
-    <div id="pokedex" class=""></div>
-    <div class="load-btn" id="loadBtn">
-      <button class="btn btn-primary" onclick="loadMore()">Load More</button>
-    </div>
-    <div id="pokedexBigCard">
-      <div class="bigCard" id="bigCard">
-        <div>
-          <h2 id="pokemonNameBigCard"></h2>
-          <h5 id="pokemonTypeBigCard"></h5>
+    <div id="overlay" class="overlay"></div>
+      <header>
+        <img src="img/pokedexLogo.png" alt="" />
+        <input type="text" id="searchPokemon" placeholder="Search Pokemon..." />
+      </header>
+      <div id="pokedex" class=""></div>
+      <div class="load-btn" id="loadBtn">
+        <button class="btn btn-primary" onclick="loadMore()">Load More</button>
+      </div>
+      <div id="pokedexBigCard" class="d-none">
+        <div class="bigCard" id="bigCard">
+          <div>
+            <h2 id="pokemonNameBigCard"></h2>
+            <h5 id="pokemonTypeBigCard">Type:</h5>
+          </div>
+          <div>
+            <img id="bigCardImage" alt="" />
+          </div>
         </div>
-        <div>
-          <img id="bigCardImage" alt="" />
+        <div id="pokemonStats">
+          <h4>Base Stats</h4>
+          <canvas id="chart"></canvas>
         </div>
       </div>
-      <div id="pokemonStats">
-        <h4>Base Stats</h4>
-        <canvas id="chart"></canvas>
-      </div>
-    </div>
   </body>
+  <script src="script.js"></script>
 </html>

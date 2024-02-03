@@ -1,5 +1,5 @@
 let currentPokemon;
-let maxPokedex = 7;
+let maxPokedex = 10;
 let pokemonArray;
 let pokemonStats = [];
 let stats = ["hp", "attack", "defense", "sp-attack", "sp-defense", "speed"];
@@ -15,8 +15,9 @@ const colorClasses = [
   "bgr-color-ground",
   "bgr-color-fairy",
 ];
-
+let bigCardStatus = false;
 let myChart = null;
+
 async function renderSmallCard() {
   content = document.getElementById("pokedex");
   content.innerHTML = "";
@@ -30,16 +31,11 @@ async function renderSmallCard() {
         currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
       let pokemonType = currentPokemon["types"][0]["type"]["name"];
       let name = currentPokemon["name"];
-      pokemonBigCard.push(currentPokemon);
       let pokemonContainer = document.createElement("div");
+      pokemonBigCard.push(currentPokemon);
       addBgrColor(pokemonContainer, pokemonType);
       pokemonContainer.classList.add("pokedex-container");
-      pokemonContainer.innerHTML = smallCardTemplate(
-        name,
-        pokemonImage,
-        pokemonType,
-        i
-      );
+      pokemonContainer.innerHTML = smallCardTemplate(name,pokemonImage,pokemonType,i);
       content.appendChild(pokemonContainer);
       pokemonContainer.id = i;
     } else {
@@ -50,113 +46,114 @@ async function renderSmallCard() {
   }
 }
 
-function smallCardTemplate(name, pokemonImage, pokemonType, i) {
-  return /*HTML*/ `
-  <div onclick="openBigCard(${i})">
-    <div>
-    <img id="pokemonImage" src="${pokemonImage}" alt="">
-</div>
-<div class="info-container-small-card">
-    <h2 id="pokemonName">#${i} ${name}</h2>
-    <h6 id="type">Type: ${pokemonType}</h6>
-</div>
- </div>
-
-`;
-}
-
 function loadMore() {
+  pokemonBigCard = [];
   maxPokedex = 39;
   renderSmallCard();
   document.getElementById("loadBtn").classList.add("d-none");
 }
 
-function openBigCard(i) {
+function openBigCard(i, event) {
+  if (event) event.stopPropagation();
+  document.getElementById("overlay").style.display = "block";
   i--;
   let pokemonImage =pokemonBigCard[i]["sprites"]["other"]["official-artwork"]["front_default"];
   let pokemonType = pokemonBigCard[i]["types"][0]["type"]["name"];
   let name = pokemonBigCard[i]["name"];
   let bigCard = document.getElementById("bigCard");
   addBgrColorBigCard(pokemonType, bigCard);
-
+  document.getElementById("pokedexBigCard").classList.remove("d-none");
   document.getElementById("bigCardImage").src = pokemonImage;
   document.getElementById("pokemonNameBigCard").innerHTML = name;
-  document.getElementById("pokemonTypeBigCard").innerHTML = pokemonType;
+  document.getElementById("pokemonTypeBigCard").innerHTML = `Type: ${pokemonType}`;
   renderChart(i);
+  bigCardStatus = true;
 }
 
+document.addEventListener("click", function (event) {
+  var isClickInsideBigCard = document
+    .getElementById("pokedexBigCard")
+    .contains(event.target);
+
+  if (!isClickInsideBigCard && bigCardStatus) {
+    document.getElementById("pokedexBigCard").classList.add("d-none");
+    bigCardStatus = false;
+    document.getElementById("overlay").style.display = "none";
+  }
+});
+
+document.getElementById("pokedexBigCard").addEventListener
+("click", function (event) {
+    event.stopPropagation();
+  });
+
 function renderChart(i) {
-    pokemonStats = [];
-    for (let j = 0; j < 6; j++) {
-      let actualstat = pokemonBigCard[i]["stats"][j]["base_stat"];
-      pokemonStats.push(actualstat);
-    }
-  
-    const chart = document.getElementById("chart");
-    Chart.defaults.font.weight = "bold";
-  
-    // Überprüfe, ob ein vorhandenes Diagramm (myChart) zerstört werden muss
-    if (myChart) {
-      myChart.destroy(); // Zerstöre das vorhandene Diagramm
-    }
-  
-    // Erstelle ein neues Diagramm
-    myChart = new Chart(chart, {
-      type: "bar",
-      data: {
-        labels: stats,
-        datasets: [
-          {
-            label: "",
-            data: pokemonStats,
-            borderWidth: 1,
-            backgroundColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
-            categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
-            barPercentage: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        indexAxis: "y",
-        plugins: {
-          legend: {
-            display: false, // Versteckt die Legende vollständig
-          },
-          title: {
-            display: false, // Versteckt den Titel, falls einer vorhanden ist
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: "black",
-              font: {
-                size: 13,
-              },
-            },
-          },
-          x: {
-            beginAtZero: true,
-            ticks: {
-              color: "black",
-            },
-          },
-        },
-      },
-    });
+  pokemonStats = [];
+  for (let j = 0; j < 6; j++) {
+    let actualstat = pokemonBigCard[i]["stats"][j]["base_stat"];
+    pokemonStats.push(actualstat);
   }
 
+  const chart = document.getElementById("chart");
+  Chart.defaults.font.weight = "bold";
 
+  if (myChart) {
+    myChart.destroy(); // lösche das vorhandene Diagramm
+  }
+  myChart = new Chart(chart, {
+    type: "bar",
+    data: {
+      labels: stats,
+      datasets: [
+        {
+          label: "",
+          data: pokemonStats,
+          borderWidth: 1,
+          backgroundColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
+          barPercentage: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      indexAxis: "y",
+      plugins: {
+        legend: {
+          display: false, // Versteckt die Legende vollständig
+        },
+        title: {
+          display: false, // Versteckt den Titel, falls einer vorhanden ist
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: "black",
+            font: {
+              size: 13,
+            },
+          },
+        },
+        x: {
+          beginAtZero: true,
+          ticks: {
+            color: "black",
+          },
+        },
+      },
+    },
+  });
+}
 
 function addBgrColor(pokemonContainer, pokemonType) {
   if (pokemonType === "grass") {
@@ -181,7 +178,7 @@ function addBgrColor(pokemonContainer, pokemonType) {
 }
 
 function addBgrColorBigCard(pokemonType, bigCard) {
-    bigCard.classList.remove(...colorClasses);
+  bigCard.classList.remove(...colorClasses);
   if (pokemonType === "grass") {
     bigCard.classList.add("bgr-color-green");
   } else if (pokemonType === "fire") {
@@ -201,4 +198,19 @@ function addBgrColorBigCard(pokemonType, bigCard) {
   } else if (pokemonType === "fairy") {
     bigCard.classList.add("bgr-color-fairy");
   }
+}
+
+function smallCardTemplate(name, pokemonImage, pokemonType, i) {
+  return /*HTML*/ `
+    <div onclick="openBigCard(${i}, event)" class="width-height">
+      <div>
+      <img id="pokemonImage" src="${pokemonImage}" alt="">
+  </div>
+  <div class="info-container-small-card">
+      <h2 id="pokemonName">#${i} ${name}</h2>
+      <h6 id="type">Type: ${pokemonType}</h6>
+  </div>
+   </div>
+  
+  `;
 }
