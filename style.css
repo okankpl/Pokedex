@@ -3,15 +3,17 @@ body {
   background-color: #f6f8fc !important;
   background-image: url(img/card-bgr.png);
   background-size: 600px;
+  width: 100%;
 }
 
 header {
+    box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
   background-color: #ffcc00c0;
-  width: 100vw;
+  width: 100%;
   flex-direction: column;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -20,6 +22,7 @@ header {
 
 header img {
   height: 60px;
+  
 }
 
 input {
@@ -136,13 +139,13 @@ h6 {
 }
 
 #pokedexBigCard {
-    position: fixed; /* oder `absolute`, wenn innerhalb eines relativ positionierten Elternelements */
+    position: fixed; 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Zentriert das Element genau */
-    z-index: 1000; /* Stellt sicher, dass es über anderen Elementen liegt */
-    width: 400px; /* Oder jede spezifische Breite */
-    height: 620px; /* Oder jede spezifische Höhe */
+    transform: translate(-50%, -50%); /* positioniert die Karte in die Mitte*/
+    z-index: 1000; 
+    width: 400px; 
+    height: 620px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -229,4 +232,36 @@ h2 {
   .nav img:hover {
     cursor:pointer;
     transform: scale(1.10);
+  }
+
+  @media (max-width: 450px) {
+    #pokedexBigCard {
+       width: 280px;
+       height: 600px;
+    }
+    .nav img {
+        height: 25px;
+    }
+    .nav {
+        gap:40px
+    }
+    #pokemonStats{
+        height: 85%;
+    }
+    #chart {
+        height: 200px !important;
+        aspect-ratio: 2/1;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #f2c341;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #eee;
+    border-radius: 10px;
   }
