@@ -265,3 +265,6 @@ h2 {
     background-color: #eee;
     border-radius: 10px;
   }
+  h2{
+    text-align: center;
+  }
