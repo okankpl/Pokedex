@@ -37,7 +37,8 @@ async function renderSmallCard() {
       currentPokemon = await response.json();
       let pokemonImage =currentPokemon["sprites"]["other"]["official-artwork"]["front_default"];
       let pokemonType = currentPokemon["types"][0]["type"]["name"];
-      let name = currentPokemon["name"];
+      let name2 = currentPokemon["name"];
+      let name = capitalizeFirstLetter(name2);
       let pokemonContainer = document.createElement("div");
       createPokedexContainer(pokemonContainer, content,i,currentPokemon);
       addBgrColor(pokemonContainer, pokemonType,i);
@@ -80,7 +81,7 @@ function openBigCard(i, event) {
 function renderBigCard(pokemonImage, name, pokemonType) {
     document.getElementById("pokedexBigCard").classList.remove("d-none");
     document.getElementById("bigCardImage").src = pokemonImage;
-    document.getElementById("pokemonNameBigCard").innerHTML = name;
+    document.getElementById("pokemonNameBigCard").innerHTML = capitalizeFirstLetter(name);
     document.getElementById("pokemonTypeBigCard").innerHTML = `Type: ${pokemonType}`;
 }
 
@@ -93,6 +94,10 @@ document.addEventListener("click", function (event) {
     document.getElementById("overlay").style.display = "none";
   }
 });
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 document.getElementById("pokedexBigCard").addEventListener("click", function (event) {
     event.stopPropagation();

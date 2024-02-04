@@ -20,7 +20,7 @@ function renderChart(i) {
             data: pokemonStats,
             borderWidth: 1,
             backgroundColor: barColors,
-            categoryPercentage: 1, // Anteil der Kategoriebreite, die die Balken einnehmen
+            categoryPercentage: 1, 
             barPercentage: 1,
           },
         ],
@@ -31,10 +31,10 @@ function renderChart(i) {
         indexAxis: "y",
         plugins: {
           legend: {
-            display: false, // Versteckt die Legende vollständig
+            display: false, 
           },
           title: {
-            display: false, // Versteckt den Titel, falls einer vorhanden ist
+            display: false,
           },
         },
         scales: {
