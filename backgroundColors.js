@@ -60,8 +60,7 @@ function addBgrColorBigCard(pokemonType, bigCard) {
     bigCard.classList.add("bgr-color-fairy");
   } else if (pokemonType === "psychic") {
     bigCard.classList.add("bgr-color-psychic");
-  } else if (pokemonType === "fighting") {
-    bigCard.classList.add("bgr-color-fighting");
+  
   } else if (pokemonType === "rock") {
     bigCard.classList.add("bgr-color-rock");
   } else if (pokemonType === "ice") {
@@ -75,6 +74,8 @@ function addBgrColorBigCard(pokemonType, bigCard) {
   } else if (pokemonType === "ghost") {
     bigCard.classList.add("bgr-color-ghost");
   } else if (pokemonType === "dark") {
-    pokemonContainer.classList.add("bgr-color-dark");
+    bigCard.classList.add("bgr-color-dark");
   }
+  else if (pokemonType === "fighting") {
+    bigCard.classList.add("bgr-color-fighting");}
 }
