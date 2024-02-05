@@ -1,5 +1,5 @@
 let currentPokemon;
-let maxPokedex = 10;
+let maxPokedex = 29;
 let pokemonArray;
 let pokemonStats = [];
 let stats = ["hp", "attack", "defense", "sp-attack", "sp-defense", "speed"];
@@ -58,7 +58,7 @@ function createPokedexContainer(pokemonContainer, content, i, currentPokemon) {
 
 function loadMore() {
   pokemonBigCard = [];
-  maxPokedex = 39;
+  maxPokedex = 386;
   renderSmallCard();
   document.getElementById("loadBtn").classList.add("d-none");
 }
